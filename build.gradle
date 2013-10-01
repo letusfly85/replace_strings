@@ -1,11 +1,20 @@
 apply plugin: 'groovy'
 apply plugin: 'application'
 
+import org.apache.tools.ant.filters.FixCrLfFilter
+import org.apache.tools.ant.filters.ReplaceTokens
+
 dependencies {
-	groovy localGroovy()
+	'org.codehaus.groovy:groovy-all:2.1.5'
 }
 
 task execGroovy (type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 	main = "example.Script"
+}
+
+task replaceStr (type: Copy) {
+	from 'src/main/resources'
+	into 'build'
+	filter(ReplaceTokens, tokens: [aaa: "AAA"])
 }
