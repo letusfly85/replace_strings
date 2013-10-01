@@ -1,0 +1,11 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+dependencies {
+	groovy localGroovy()
+}
+
+task execGroovy (type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = "example.Script"
+}
